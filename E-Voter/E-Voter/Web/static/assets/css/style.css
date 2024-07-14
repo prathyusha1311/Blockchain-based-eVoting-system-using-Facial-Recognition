@@ -1,0 +1,5 @@
+thead, tbody tr {
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+

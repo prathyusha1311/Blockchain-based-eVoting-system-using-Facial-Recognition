@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <title>E-Voting Application</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/assets/css/templatemo-chain-app-dev.css">
+    <link rel="stylesheet" href="/static/assets/css/animated.css">
+    <link rel="stylesheet" href="/static/assets/css/owl.css">
+
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+             <h4>E Voting</h4>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('addCandidates') }}">Add Candidate</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('addVoters') }}">Add voters</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('addElections') }}">Add Election</a></li>
+              <li class="scroll-to-section">{{session['name']}}</li>
+              <li><div class="gradient-button"><a  href="{{ url_for('index') }}"><i class="fa fa-sign-in-alt"></i> Logout</a></div></li> 
+            </ul>      
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+  
+  <div id="modal" class="popupContainer" style="display:none;">
+    <div class="popupHeader">
+        <span class="header_title"><p></p></span>
+        <span class="modal_close"><i class="fa fa-times"></i></span>
+    </div>
+
+   
+</div>
+
+
+  <div id="services" class="services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h4>Add <em>New </em> Voters </h4>
+            <img src="/static/assets/images/heading-line-dec.png" alt="">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="service-item first-service">
+            
+            <h4>Create an account</h4>
+            
+            <form action ="/SaveVoter" method = "POST">
+                <div class="form-group">
+                    <label for="userName">UserName</label>
+                    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter username" required>
+                    
+                  </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                  
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputEmail1" name="password" aria-describedby="emailHelp" placeholder="Enter password" required>
+                    
+                  </div>
+               
+                <div class="form-group">
+                    <label for="contact">Contact Number</label>
+                    <input type="number" class="form-control" id="contact" name="contact" aria-describedby="emailHelp" placeholder="Enter Contact Number" required>
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="team">Aadhar Number</label>
+                    <input type="text" class="form-control" id="uniqueid" name="uniqueid" aria-describedby="emailHelp" placeholder="Enter Unique Id" required>
+                    
+                  </div>
+                <button type="submit" class="btn btn-primary">Create an Account</button>
+                <p>{{mess}}</p>
+              </form>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+  </div>
+  <div id="services" class="services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h4>View Voters </h4>
+            <img src="/static/assets/images/heading-line-dec.png" alt="">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="service-item first-service">
+            
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">VoterId/Aadhaar Id</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in eview %}
+                <tr>
+                  <th scope="row">{{item[0]}}</th>
+                  <td>{{item[1]}}</td>
+                  <td>{{item[2]}}</td>
+                  <td>{{item[3]}}</td>
+                  <td>{{item[4]}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            
+          
+          </div>
+        </div>
+    
+      </div>
+    </div>
+  </div>
+
+
+  <footer id="newsletter">
+    <div class="container">
+      
+      <div class="row">
+        <p>E-voting application using facial features</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/assets/js/owl-carousel.js"></script>
+  <script src="/static/assets/js/animation.js"></script>
+  <script src="/static/assets/js/imagesloaded.js"></script>
+  <script src="/static/assets/js/popup.js"></script>
+  <script src="/static/assets/js/custom.js"></script>
+</body>
+</html>
